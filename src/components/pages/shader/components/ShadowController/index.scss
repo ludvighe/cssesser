@@ -1,0 +1,53 @@
+.shadow-controller {
+  display: flex;
+  //   flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+
+  background-color: var(--clr-background-light);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 1em;
+  border-radius: 10px;
+
+  .field {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 1rem;
+
+    label {
+      position: absolute;
+      top: 0;
+
+      color: var(--clr-primary);
+      font-size: 0.7rem;
+    }
+
+    input:not([type="color"]) {
+      max-width: 90px;
+    }
+  }
+
+  .shadow-color {
+    input[type="color"] {
+      border-radius: 10px;
+      border: 2px solid #767676;
+      &::-webkit-color-swatch {
+        opacity: 0;
+      }
+    }
+    input[type="text"] {
+      // min-width: 60vw;
+      max-width: initial;
+    }
+  }
+
+  .shadow-inset {
+    height: 100%;
+    button {
+      background-color: transparent;
+    }
+  }
+}

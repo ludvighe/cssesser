@@ -1,0 +1,28 @@
+.box-shadow-result {
+  position: relative;
+  display: inline-block;
+
+  background-color: #000;
+  color: white;
+  padding: 0.5em;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  cursor: pointer;
+  transition: all ease 100ms;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  white-space: nowrap;
+  overflow-x: scroll;
+
+  max-width: 90vw;
+
+  &:active {
+    background-color: var(--clr-background);
+  }
+}

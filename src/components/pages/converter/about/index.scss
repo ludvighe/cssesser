@@ -1,0 +1,48 @@
+.about-container {
+  //   position: relative;
+  cursor: help;
+
+  .about-popup {
+    position: fixed;
+    z-index: 10;
+    bottom: 1rem;
+    left: 1rem;
+    width: calc(100% - 2rem);
+
+    transition: all ease 200ms;
+
+    background-color: var(--clr-background);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    cursor: initial;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+
+      h1 {
+        display: flex;
+        align-items: flex-start;
+        span {
+          color: #fff4;
+          margin: 0 1em;
+          font-size: large;
+        }
+      }
+
+      .close-button {
+        position: relative;
+        font-size: x-large;
+        cursor: pointer;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: #fffa;
+      float: right;
+    }
+  }
+}

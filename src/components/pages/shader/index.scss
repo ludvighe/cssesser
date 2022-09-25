@@ -1,0 +1,17 @@
+.shader-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .shader-controllers {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .go-crazy-button {
+    margin-top: 50vh;
+    cursor: pointer;
+  }
+}
