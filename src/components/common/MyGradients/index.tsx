@@ -47,6 +47,7 @@ export default () => {
     <aside
       id="my-gradients"
       class={"side-menu" + (show() ? " __show" : " __hide")}
+      onMouseLeave={() => setShow(false)}
     >
       <div class="tag" onClick={() => setShow(!show())}>
         Grades

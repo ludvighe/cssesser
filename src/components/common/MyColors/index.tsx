@@ -9,7 +9,7 @@ type Color = {
 
 const localStorageKey = "vis-colors";
 
-export default ({}: {}) => {
+export default () => {
   const [colors, setColors] = createSignal<Color[]>([]);
   const [show, setShow] = createSignal(false);
 
@@ -46,7 +46,7 @@ export default ({}: {}) => {
     <aside
       id="my-colors"
       class={"side-menu" + (show() ? " __show" : " __hide")}
-      // onMouseLeave={() => setShow(false)}
+      onMouseLeave={() => setShow(false)}
     >
       <div class="tag" onClick={() => setShow(!show())}>
         Colors
