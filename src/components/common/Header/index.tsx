@@ -1,8 +1,9 @@
 import { useNavigate } from "@solidjs/router";
-import { createEffect, createSignal, For, onCleanup, onMount } from "solid-js";
+import { createEffect, createSignal, For } from "solid-js";
 import { routes } from "../../..";
-import { responsive, useIsMobile } from "../../../services/responsive.service";
+import { useIsMobile } from "../../../services/responsive.service";
 import MyColors from "../MyColors";
+import MyGradients from "../MyGradients";
 import "./index.scss";
 
 export default () => {
@@ -92,6 +93,7 @@ export default () => {
         )}
       </header>
       <MyColors />
+      <MyGradients />
     </>
   );
 };

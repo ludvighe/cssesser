@@ -1,5 +1,5 @@
 import { createSignal, Index, onMount } from "solid-js";
-import { randomHexColor } from "../../../services/color.service";
+import { randomHexColor } from "../../../services/random.service";
 import "./index.scss";
 
 type Color = {
@@ -43,18 +43,19 @@ export default ({}: {}) => {
     saveColors();
   };
   return (
-    <div
-      class={"my-colors" + (show() ? " __show" : " __hide")}
+    <aside
+      id="my-colors"
+      class={"side-menu" + (show() ? " __show" : " __hide")}
       // onMouseLeave={() => setShow(false)}
     >
       <div class="tag" onClick={() => setShow(!show())}>
         Colors
       </div>
-      <div class="colors-list">
+      <div class="side-menu-list">
         {colors().length === 0 && <h2>No saved colors</h2>}
         <Index each={colors()}>
           {(color) => (
-            <div class="color-container">
+            <div class="list-item-container">
               <div style={{ "background-color": color().color, width: "30px" }}>
                 <input
                   type="color"
@@ -88,6 +89,6 @@ export default ({}: {}) => {
       </div>
 
       <button onClick={handleOnCreateColor}>Add new color</button>
-    </div>
+    </aside>
   );
 };

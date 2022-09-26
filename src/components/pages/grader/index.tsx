@@ -5,7 +5,7 @@ import {
   createUniqueId,
   Index,
 } from "solid-js";
-import { randomHexColor } from "../../../services/color.service";
+import { randomHexColor } from "../../../services/random.service";
 import "./index.scss";
 import { ColorState, Gradient } from "./types";
 import { gradientToString } from "./utils";

@@ -5,7 +5,7 @@ import {
   Index,
   lazy,
 } from "solid-js";
-import { randomHexColor } from "../../../services/color.service";
+import { randomHexColor } from "../../../services/random.service";
 import { getRandomNumber } from "../../../services/random.service";
 import "./index.scss";
 import { BoxShadow, Shadow } from "./types";
