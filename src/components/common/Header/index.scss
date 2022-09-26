@@ -168,13 +168,14 @@
   background-color: #fff2;
   border-radius: 0 0 0 10px;
 
-  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, z-index 300ms;
   &.__show {
     transform: translateX(0);
     z-index: 100;
   }
   &.__hide {
     transform: translateX(100%);
+    transition-delay: z-index 300ms;
   }
 
   .tag {
