@@ -1,0 +1,32 @@
+#my-shadows {
+  top: 170px;
+
+  .tag {
+    border-radius: 10px 10px 0 0;
+  }
+  .list-item-container {
+    position: relative;
+
+    margin-left: calc(300px * 0.15);
+
+    .shadow-preview {
+      position: absolute;
+      left: -50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: white;
+      width: 300px;
+      height: 300px;
+      transform: scale(0.1);
+      border-radius: 50px;
+
+      .shadow-preview-box {
+        width: 50%;
+        height: 50%;
+      }
+    }
+  }
+}

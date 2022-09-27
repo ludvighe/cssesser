@@ -18,3 +18,13 @@ export const randomLinearGradient = () => {
   const color2 = randomHexColor();
   return `linear-gradient(${rotation}deg, ${color1} ${position1}%, ${color2} ${position2}%)`;
 };
+
+export const randomBoxShadow = () => {
+  const color = randomHexColor();
+  const hOffset = getRandomNumber(0, 30);
+  const vOffset = getRandomNumber(0, 30);
+  const blur = getRandomNumber(0, 30);
+  const spread = getRandomNumber(0, 10);
+
+  return `box-shadow: ${color} ${hOffset}px ${vOffset}px ${blur}px ${spread}px;`;
+};
