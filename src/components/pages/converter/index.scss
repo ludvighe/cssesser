@@ -7,11 +7,15 @@
   background-color: var(--clr-background-light);
   border-radius: 10px;
   padding: 1rem;
-  margin: 1rem;
+  margin: 1rem auto;
   color: white;
+
+  max-width: 700px;
+
   .converter-color-input {
     display: flex;
     align-items: center;
+    gap: 1em;
 
     .color-input {
       position: relative;
@@ -39,6 +43,15 @@
         transition: 100ms;
         width: 100%;
         font-size: large;
+      }
+    }
+    #color-input-color {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      border: 2px solid #fffa;
+      input {
+        opacity: 0;
       }
     }
   }

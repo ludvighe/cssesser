@@ -39,11 +39,16 @@ export default () => {
             id="color-input-text"
           />
         </div>
-        <input
-          type="color"
-          value={color().toHexString()}
-          onInput={handleOnInputColor}
-        />
+        <div
+          id="color-input-color"
+          style={{ "background-color": color().toHexString() }}
+        >
+          <input
+            type="color"
+            value={color().toHexString()}
+            onInput={handleOnInputColor}
+          />
+        </div>
       </section>
 
       <table class="converter-result">
