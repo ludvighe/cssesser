@@ -1,0 +1,84 @@
+.keyframe-timeline {
+  position: relative;
+  width: 500px;
+  height: 50px;
+  background-color: var(--clr-primary);
+  border-radius: 10px;
+
+  margin-top: 30px;
+
+  --left-pos: 0px;
+  --percentage-text: "0%";
+
+  --marker-opacity: 1;
+  &:not(:hover) {
+    &::before,
+    &::after {
+      transition-delay: 500ms;
+      --marker-opacity: 0;
+    }
+  }
+
+  // Cursor
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: var(--left-pos);
+    height: 100%;
+    width: 2px;
+    background-color: var(--clr-secondary);
+
+    opacity: var(--marker-opacity);
+    transition: opacity 100ms ease;
+  }
+
+  // Percentage marker
+  &::after {
+    content: var(--percentage-text);
+    position: absolute;
+    bottom: calc(100% + 5px);
+    z-index: 1;
+
+    width: 30px;
+    left: calc(var(--left-pos) - 15px);
+
+    padding: 0.2em;
+    border-radius: 5px;
+
+    background-color: var(--clr-secondary);
+    color: white;
+    font-size: small;
+    text-align: center;
+
+    opacity: var(--marker-opacity);
+    transition: opacity 100ms ease;
+  }
+
+  .timeline-popup {
+    cursor: initial;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    transition: all 200ms ease;
+    width: max-content;
+
+    background-color: var(--clr-background-light);
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: #000000aa 0px 5px 15px;
+  }
+
+  .keyframe-step-marker {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 1%;
+    cursor: pointer;
+    background-color: var(--clr-background);
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}
