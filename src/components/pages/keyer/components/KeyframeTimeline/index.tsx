@@ -9,10 +9,11 @@ const getPopupElement = () => document.querySelector("#timeline-popup");
 const getSizes = () => {
   const timelineEl = getTimelineElement();
   const popupEl = getPopupElement();
-  if (!timelineEl || !popupEl) return { timelineW: 0, popupW: 0 };
+  if (!timelineEl || !popupEl) return { timelineW: 0, timelineH: 0, popupW: 0 };
   const timelineW = timelineEl.clientWidth;
+  const timelineH = timelineEl.clientHeight;
   const popupW = popupEl.clientWidth;
-  return { timelineW, popupW };
+  return { timelineW, timelineH, popupW };
 };
 
 export const KeyframeTimeline = ({
@@ -20,12 +21,13 @@ export const KeyframeTimeline = ({
   onStepChange,
 }: {
   keyframe: Accessor<Keyframe>;
-  onStepChange: (step: KeyframeStep) => void;
+  onStepChange: (step: KeyframeStep, del?: boolean) => void;
 }) => {
   const [positions, setPositions] = createSignal({
     x: 0,
     y: 0,
     popupX: 0,
+    popupY: 0,
     percentageX: 0,
   });
   const [currentStep, setCurrentStep] = createSignal<KeyframeStep | null>(null);
@@ -41,25 +43,35 @@ export const KeyframeTimeline = ({
     }));
   };
 
-  const handleOnClick = (step?: KeyframeStep) => {
+  const handleOnClick = (step?: KeyframeStep, del: boolean = false) => {
     if (currentStep() !== null && !step) {
       setCurrentStep(null);
       return;
     }
-    const { timelineW, popupW } = getSizes();
+    if (del && step) {
+      onStepChange(step, true);
+      setCurrentStep(null);
+      return;
+    }
 
-    let popupX = positions().x;
-    if (popupX + popupW > timelineW) popupX -= popupW;
-    setPositions((prev) => ({ ...prev, popupX }));
-
+    const { timelineW } = getSizes();
     const percentagePos = Math.round((positions().x / timelineW) * 100);
     if (!step)
       step = {
         id: createUniqueId(),
         percentage: percentagePos,
       };
-    setCurrentStep(step);
 
+    setTimeout(() => {
+      const { popupW, timelineH } = getSizes();
+      let popupX = timelineW * (step!.percentage * 0.01) - popupW / 2;
+      if (popupX + popupW > timelineW) popupX -= popupW / 2;
+      if (popupX - popupW / 2 < 0) popupX += popupW / 2;
+
+      setPositions((prev) => ({ ...prev, popupX, popupY: timelineH }));
+    }, 10);
+
+    setCurrentStep(step);
     onStepChange(step);
   };
 
@@ -82,18 +94,22 @@ export const KeyframeTimeline = ({
         style={{
           left: `${positions().popupX}px`,
           transform:
-            currentStep() === null ? "translateY(0)" : "translateY(-100%)",
+            currentStep() === null
+              ? "translateY(0)"
+              : `translateY(${positions().popupY}px)`,
           opacity: currentStep() === null ? "0" : "1",
           // "z-index": currentStep() === null ? "-100" : "2",
-          height: currentStep() === null ? "0px" : "100px",
+          height: currentStep() === null ? "0px" : "max-content",
           padding: currentStep() === null ? "0" : "0.5em",
         }}
-        onMouseMove={(e: any) => e.stopPropagation()}
+        // onMouseMove={(e: any) => e.stopPropagation()}
         onClick={(e: any) => e.stopPropagation()}
       >
         {currentStep() !== null && (
           <KeyframeStepController
             keyframeStep={currentStep as Accessor<KeyframeStep>}
+            onClose={() => setCurrentStep(null)}
+            onDelete={() => handleOnClick(currentStep()!, true)}
           />
         )}
       </div>
@@ -110,10 +126,32 @@ export const KeyframeTimeline = ({
               handleOnClick(step());
             }}
             class="keyframe-step-marker"
-            style={{ left: `${step().percentage}%` }}
+            style={{
+              left: `${step().percentage}%`,
+              "background-color":
+                currentStep()?.id === step().id ? "var(--clr-secondary)" : "",
+              "box-shadow":
+                currentStep()?.id === step().id
+                  ? "#fff5 0px 0px 3px inset"
+                  : "var(--clr-secondary) 0px 0px 0px 0px",
+            }}
           />
         )}
       </Index>
+
+      <For each={Array.from({ length: 199 }, (_, index) => index + 1)}>
+        {(i) =>
+          i % 2 === 1 ? (
+            <div
+              class="percentage-indicator"
+              onMouseMove={(e) => e.stopPropagation()}
+              style={{ left: `calc(${i / 2}% - 1px)` }}
+            />
+          ) : (
+            <></>
+          )
+        }
+      </For>
     </div>
   );
 };

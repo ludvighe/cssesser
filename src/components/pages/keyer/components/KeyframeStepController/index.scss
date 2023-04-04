@@ -1,0 +1,17 @@
+.keyframe-step-controller {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  header {
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .add-prop-btn {
+    scale: 0.8;
+  }
+}

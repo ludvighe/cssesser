@@ -1,4 +1,5 @@
 import { createSignal, For, lazy } from "solid-js";
+import { cssColorNames } from "../../../services/css.services";
 import { W3Color, w3color } from "../../../services/w3color";
 import "./index.scss";
 import { colorConfig } from "./utils";
@@ -36,8 +37,14 @@ export default () => {
             onInput={handleOnInputText}
             type="text"
             value=""
+            list="css-color-names"
             id="color-input-text"
           />
+          <datalist id="css-color-names">
+            {cssColorNames.map((name) => (
+              <option>{name}</option>
+            ))}
+          </datalist>
         </div>
         <div
           id="color-input-color"

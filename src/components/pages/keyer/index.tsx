@@ -6,10 +6,8 @@ import { KeyframeTimeline } from "./components/KeyframeTimeline";
 
 const initialKeyframe: Keyframe = {
   name: "initial-key-frame",
-  steps: [
-    { id: createUniqueId(), percentage: 10 },
-    { id: createUniqueId(), percentage: 20 },
-  ],
+  duration: { value: 1, unit: "s" },
+  steps: [],
 };
 
 export default () => {
@@ -17,10 +15,16 @@ export default () => {
   const handleOnKeyframeChange = (keyframe: Keyframe) => {
     setKeyframe(keyframe);
   };
-  const handleOnStepChange = (step: KeyframeStep) => {
+
+  const handleOnStepChange = (step: KeyframeStep, del = false) => {
     const isNew = !keyframe().steps.find((s) => s.id === step.id);
     if (isNew) {
       setKeyframe((prev) => ({ ...prev, steps: [...prev.steps, step] }));
+    } else if (del) {
+      setKeyframe((prev) => ({
+        ...prev,
+        steps: prev.steps.filter((s) => s.id !== step.id),
+      }));
     } else {
       setKeyframe((prev) => ({
         ...prev,

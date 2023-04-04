@@ -5,6 +5,6 @@ export type KeyframeStep = {
 
 export type Keyframe = {
   name: string;
-  //   transition: CSS_Transition;
+  duration: { value: number; unit: string };
   steps: KeyframeStep[];
 };

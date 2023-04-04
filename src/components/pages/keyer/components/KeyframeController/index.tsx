@@ -31,6 +31,7 @@ export const KeyframeController = ({
         <input
           title="Must conform with CSS naming convention.\nEg: a-c00l-animation\n\n• Must start with an alphabetical character\n• Must only contain alphanumerical and hyphen characters\n\n• regexp: /^[a-zA-Z][a-zA-Z0-9-]*$/"
           type="text"
+          placeholder="animation name"
           class={error().name ? "input-error" : ""}
           onInput={(e: any) =>
             handleOnChange({ ...keyframe(), name: e.target.value })
