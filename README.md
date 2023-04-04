@@ -2,7 +2,7 @@
 
 Graphical tools for generating CSS.
 
-## Grader
+## [Grader](https://cssesser.web.app/grader)
 
 Tool for creating gradients. Supports linear, radial, conic, repeating-linear, and repeating-radial.
 
@@ -10,7 +10,7 @@ _Will generate random linear gradients if idle._
 
 ![grader-preview](src/assets/previews/cssesser-grader.png)
 
-## Shader
+## [Shader](https://cssesser.web.app/shader)
 
 Tool for creating box shadows.
 
@@ -18,7 +18,7 @@ _Will generate random box shadows if idle._
 
 ![grader-preview](src/assets/previews/cssesser-shader.png)
 
-## Converter
+## [Converter](https://cssesser.web.app/converter)
 
 Converts between color formats.
 
